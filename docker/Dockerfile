@@ -56,8 +56,8 @@ RUN SRTP="2.6.0" && wget https://github.com/cisco/libsrtp/archive/v$SRTP.tar.gz 
     cd / && rm -rf libsrtp-$SRTP
 
 
-# libnice 0.1.21 (2023-01-07)
-RUN LIBNICE="0.1.21" git clone https://gitlab.freedesktop.org/libnice/libnice && \
+# libnice 0.1.22 (2024-03-04)
+RUN LIBNICE="0.1.22" git clone https://gitlab.freedesktop.org/libnice/libnice && \
 #    apt-get -y --no-install-recommends install ninja-build meson gtk-doc-tools libgnutls28-dev && \
 #    apt-get remove -y libnice-dev libnice10 && \
     cd libnice && \
@@ -69,10 +69,10 @@ RUN LIBNICE="0.1.21" git clone https://gitlab.freedesktop.org/libnice/libnice &&
 
 
 # datachannel build
-# Jan 13, 2021 0.9.5.0 07f871bda23943c43c9e74cc54f25130459de830
+# Apr 17, 2024 master c4b52c34d4a7ecca6c992ba2f7f09607997d8ead
 RUN git clone https://github.com/sctplab/usrsctp.git && \
     cd usrsctp && \
-    git checkout 0.9.5.0 && \
+    git checkout c4b52c34d4a7ecca6c992ba2f7f09607997d8ead && \
     ./bootstrap && \
     ./configure --prefix=/usr --disable-static --disable-programs --disable-inet --disable-inet6 && \
     make && make install && \
