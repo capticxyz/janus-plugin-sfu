@@ -56,12 +56,12 @@ RUN SRTP="2.6.0" && wget https://github.com/cisco/libsrtp/archive/v$SRTP.tar.gz 
     cd / && rm -rf libsrtp-$SRTP
 
 
-# libnice 0.1.22 (2024-03-04)
-RUN LIBNICE="0.1.22" git clone https://gitlab.freedesktop.org/libnice/libnice && \
+# libnice 2020-07-06 13:53 (post 0.1.18)
+RUN git clone https://gitlab.freedesktop.org/libnice/libnice && \
 #    apt-get -y --no-install-recommends install ninja-build meson gtk-doc-tools libgnutls28-dev && \
 #    apt-get remove -y libnice-dev libnice10 && \
     cd libnice && \
-    git checkout $LIBNICE && \
+    git checkout 48dac0d702b134f7b11b92602c234ba1120cc75b && \
     meson setup -Dprefix=/usr -Dlibdir=lib -Ddebug=false -Doptimization=0 -Dexamples=disabled -Dgtk_doc=disabled -Dgupnp=disabled -Dgstreamer=disabled -Dtests=disabled build && \
     ninja -C build && \
     ninja -C build install && \
