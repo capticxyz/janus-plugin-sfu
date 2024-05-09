@@ -79,10 +79,10 @@ RUN git clone https://github.com/sctplab/usrsctp.git && \
     cd / && rm -rf usrsctp
 
 
-# 2023-12-06 15:56 63ee713102f453447e3c912a7bb45791d4d198c5 (v0.14.1 from 0.x branch)
+# 2024-05-09 12:46 63ee713102f453447e3c912a7bb45791d4d198c5 (post v0.14.2 from 0.x branch)
 RUN git clone -b 0.x https://github.com/meetecho/janus-gateway.git && \
     cd janus-gateway && \
-    git checkout 63ee713102f453447e3c912a7bb45791d4d198c5 && \
+    git checkout a7767ad30b803d96e11b491547bcf5660cb7a937 && \
     sh autogen.sh &&  \
     CFLAGS="${CFLAGS} -fno-omit-frame-pointer" ./configure --prefix=/usr --disable-all-plugins --disable-all-handlers && \
     make && make install && make configs && \
