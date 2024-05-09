@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 # If you want to build the docker image on Raspberry Pi OS (based on debian bullseye)
 # and then copy the build artifacts on the host to run janus without docker,
 # comment "FROM ubuntu:20.04" and uncomment those two lines:
