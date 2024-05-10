@@ -9,7 +9,7 @@ use auth::ValidatedToken;
 use config::Config;
 use janus_plugin::rtcp::{gen_fir, has_fir, has_pli};
 use janus_plugin::sdp::{AudioCodec, MediaDirection, OfferAnswerParameters, Sdp, VideoCodec};
-use janus_plugin::utils::LibcString;
+use janus_plugin::utils::{LibcString,GLibString};
 use janus_plugin::{
     answer_sdp, build_plugin, export_plugin, janus_err, janus_huge, janus_info, janus_verb, janus_warn, offer_sdp, JanssonDecodingFlags, JanssonEncodingFlags,
     JanssonValue, JanusError, JanusResult, LibraryMetadata, Plugin, PluginCallbacks, PluginDataPacket, PluginResult, PluginRtcpPacket, PluginRtpPacket,
@@ -771,7 +771,7 @@ extern "C" fn handle_message(
         Ok(sess) => {
             let msg = RawMessage {
                 from: Arc::downgrade(&sess),
-                txn: TransactionId(transaction),
+                txn: unsafe { GLibString.from_chars(transaction) },
                 msg: unsafe { JanssonValue::from_raw(message) },
                 jsep: unsafe { JanssonValue::from_raw(jsep) },
             };
